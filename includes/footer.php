@@ -1,5 +1,5 @@
-</main>
 </div>
+			
 		<footer class="page-footer">
           <div class="container">
             <div class="row">
@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="footer-copyright">
-            <div class="container">© 2015 Banegas Nicolas, Minetto Fermin, Mariperisena Leandro  <a class="grey-text text-lighten-3" href="https://github.com/SuperClassGroup/">[ Super Class Development ]</a> </div>
+            <div class="container">© 2015 Banegas Nicolas, Minetto Fermin, Mariperisena Leandro</div>
           </div>
         </footer>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

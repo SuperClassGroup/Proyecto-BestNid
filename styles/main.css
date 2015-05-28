@@ -1,17 +1,7 @@
 body {
-	background-color: #f5f5f5;
-	display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+	background-color: #E2E2E2;
 }
-main {
-    flex: 1 0 auto;
-	background-color: #ffffff;
-  } 
+
 .card {
   overflow: visible;
-
-}
-nav{
-	margin-bottom: 20px;
 }

@@ -61,39 +61,13 @@ class Modelo {
 	}
 	
 	
-	// public function verifyUser($user, $pass){
-		// var_dump($user);
-		// $res = $this->con->query("SELECT * FROM 'usuario' WHERE 'user' = {$user}");
-
-		// var_dump($res);
-		// if($res){
-			// $user = $res->fetch_assoc();
-			// if( $user['pass'] == $pass ) return true;
-		// }
-		// return false;		
-	// } FUNCION DE VALEN PARA VERIFICAR USUARIO NO FUNCIONA, NO ENTIENDO PORQUE
-	
-		public function verifyUser($user, $pass){
-		$res = $this->con->query("SELECT * FROM usuario");
-		while( $fila = $res->fetch_assoc() ){
-			if($fila['user'] == $user){
-				if( $fila['pass'] == $pass ) return true;
-				else{ echo("Contraseña Invalida"); return false;}
-			}
+	public function verifyUser($user,$pass){
+		$res = $this->con->query("SELECT pass FROM usuario WHERE usuario = {$user}");
+		if($res->num_rows){
+			$user = $res->fetch_assoc();
+			if( $user['pass'] == $pass ) return true;
 		}
-		echo("Usuario Invalido");
-		return false;
-				
+		return false;		
 	}
 	
-		public function getAllProductsWith($text){
-			$res = $this->con->query("SELECT * FROM `producto` WHERE `titulo` LIKE '%{$text}%' OR `descripcion` LIKE '%{$text}%'");
-			$resultado = array();
-			while( $fila = $res->fetch_assoc() ){
-					$resultado[] = $fila;
-			}
-		return $resultado;
-		}
-	}
-	
-?>
+}
