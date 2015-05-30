@@ -54,7 +54,7 @@ if (isset($_REQUEST['buscar'])){
 				<p class="truncate"><?php echo $producto['descripcion']; ?></p>
 			</div>
 			<div class="card-action" style="padding:10px" >
-					<a class="red-text left" style="margin-right:0px;margin-left:5px" href="/Producto.php?id=<?php echo $producto['id']; ?>">Ver más</a>
+					<a class="red-text left" style="margin-right:0px;margin-left:5px" href="/Producto.php?idproducto=<?php echo $producto['id']; ?>">Ver más</a>
 					<a class="red-text right" style="margin-right:5px;margin-left:0px" href="/Comprar.php?id=<?php echo $producto['id']; ?>">Comprar</a>
 			</div>
 		  </div>

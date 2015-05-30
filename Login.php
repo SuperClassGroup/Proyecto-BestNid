@@ -7,9 +7,9 @@ include('includes/modelo.class.php');
 
 if(isset($_REQUEST['user'])){
 	$con = new Modelo();
-	if( $con->verifyUser($_REQUEST['user'],$_REQUEST['pass']) ){
+	if( $user = $con->verifyUser($_REQUEST['user'],$_REQUEST['pass']) ){
 		$_SESSION['user'] = $_REQUEST['user'];
-		var_dump($_SESSION);
+		$_SESSION['id'] = $user['id'];
 		header("Location: /");
 	}
 }
