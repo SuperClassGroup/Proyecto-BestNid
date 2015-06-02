@@ -11,12 +11,22 @@ class Modelo {
 	
 	private $con;
 	
+	private $order = 'fecha_ini';
+	
 	function __construct() {
 		$this->con = new mysqli(
 			self::$host,
 			self::$user,
 			self::$pass,
 			self::$dbnm);
+	}
+	
+	public function setOrder($orden){
+		$this->order = $orden;
+	}
+	
+	private function order(){
+		return ' ORDER BY ' . $this->order;
 	}
 	
 	public static function getInstance(){
@@ -27,9 +37,11 @@ class Modelo {
 		return self::$instancia;
 	}
 	
+	
+	
 	//OBTIENE TODOS LOS PRODUCTOS
 	public function getAllProducts(){
-		$res = $this->con->query("SELECT * FROM producto");
+		$res = $this->con->query("SELECT * FROM producto".$this->order());
 		
 		$resultado = array();
 		while( $fila = $res->fetch_assoc() ){
@@ -41,7 +53,7 @@ class Modelo {
 	
 	//FILTRA LOS PRODUCTOS CON CATEGORIA = A LA $IDCATEGORIA
 	public function getProductsOfCategory($idcategoria){
-		$res = $this->con->query("SELECT * FROM producto WHERE id_categoria = {$idcategoria}");
+		$res = $this->con->query("SELECT * FROM producto WHERE id_categoria = {$idcategoria}".$this->order());
 		
 		$resultado = array();
 		while( $fila = $res->fetch_assoc() ){
@@ -93,7 +105,7 @@ class Modelo {
 	
 	//BUSCAR PRODUCTOS CON $TEXTO EN DESCRIPCION O TITULO
 	public function getAllProductsWith($text){
-		$res = $this->con->query("SELECT * FROM `producto` WHERE `titulo` LIKE '%{$text}%' OR `descripcion` LIKE '%{$text}%'");
+		$res = $this->con->query("SELECT * FROM `producto` WHERE `titulo` LIKE '%{$text}%' OR `descripcion` LIKE '%{$text}%'".$this->order());
 		$resultado = array();
 		while( $fila = $res->fetch_assoc() ){
 				$resultado[] = $fila;
