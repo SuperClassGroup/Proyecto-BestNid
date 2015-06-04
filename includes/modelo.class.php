@@ -150,27 +150,6 @@ class Modelo {
 		VALUES ('{$texto}','{$id_producto}','{$id_user}')"
 		);
 	}
-	
-	public function crearUsuarioNuevo($nombre, $apellido, $dni, $numTarjeta, $nombre_usuario, $mail, $contra){
-		/*$res=$this->con->query(
-		"SELECT COUNT * FROM usuario
-		WHERE user = $nombre_usuario)"
-		);
-		$fila = array();
-		$fila[] = $res->fetch_assoc();
-		/echo $fila[0];
-		if ($res = NULL){*/
-			$this->con->query(
-			"INSERT INTO `bestnid`.`usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}')"
-			);
-			$respuesta = "Se creo el usuario exitosamente";
-			return $respuesta;	
-		/*}
-		else{
-			$respuesta = "El nombre de usuario ya existe";
-			return $respuesta;
-		}*/
-	}
 		
 		
 }
