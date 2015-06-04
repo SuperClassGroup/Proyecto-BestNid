@@ -17,17 +17,19 @@
 						<ul class="right hide-on-med-and-down">
 							<li><a href="/">VER LISTADO</a></li>
 							<?php if(isset($_SESSION['user'])){ ?>
+								<li><a href="CrearSubasta.php">SUBASTAR</a></li>
 								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span> </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
 							<?php }else{ ?>
 								<li><a href="Login.php">INGRESAR</a></li>
 							<?php } ?>
 						</ul>
-						<ul class="side-nav z-depth-2" id="mobile-demo" >
+						<ul class="side-nav z-depth-2" id="mobile-demo">
 							<li class="red lighten-1"><a href="/" style="height:64px" ><img height="64px" src="/img/logoblancogrande.png"/></a></li>
 							<li class="divider"></li>
 							<li><a href="/">VER LISTADO</a></li>
 							<?php if(isset($_SESSION['user'])){ ?>
+								<li><a href="CrearSubasta.php">SUBASTAR</a></li>
 								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span>  </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
 							<?php }else{ ?>

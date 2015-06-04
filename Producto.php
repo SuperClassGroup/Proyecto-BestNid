@@ -5,7 +5,7 @@ include('includes/header.php');
 
 $con = new Modelo();
 
-if(isset($_REQUEST['comentario'])){
+if(isset($_REQUEST['comentario']) && ($_REQUEST['comentario'] != "")){
 	//GUARDAR EL COMENTARIO EN LA BASE DE DATOS
 	$con->setComentario($_REQUEST['comentario'],$_REQUEST['idproducto'],$_SESSION['id']);
 }
@@ -13,7 +13,8 @@ if(isset($_REQUEST['comentario'])){
 if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 	$producto = $con->getProduct($_REQUEST['idproducto']);
 	$comentarios = $con->getComentarios($_REQUEST['idproducto']);
-}
+	if ($producto){
+
 
 
 ?>
@@ -78,12 +79,12 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 			<div class="row">
 				<form method="post">
 					<div class="input-field col s12">
-							<textarea id="textarea1" class="materialize-textarea" name="comentario"></textarea>
+							<textarea id="textarea1" class="materialize-textarea" length="500" name="comentario"></textarea>
 							<label for="textarea1">Comentar</label>
 							<input type="hidden" name="idproducto" value="<?php echo $producto['id'] ?>"> </input>
 					</div>
-					<div class="col s12">
-						<button class="btn waves-effect waves-light red right" type="submit" name="action">Enviar
+					<div class="col s12 center">
+						<button class="btn waves-effect waves-light red" type="submit" name="action">Enviar Comentario
 							<i class="mdi-content-send right"></i>
 						</button>
 					</div>
@@ -95,7 +96,10 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 		</div>
 	</div>
 </div>
-
-
-
-<?php include('includes/footer.php'); ?>
+<?php 
+	}
+	else{
+		?>  <div class="center red-text"><h5>El producto solicitado no se encuentra disponible o ha finalizado</h5><br><img src="img/error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div>  <?php 
+	}
+}
+include('includes/footer.php'); ?>

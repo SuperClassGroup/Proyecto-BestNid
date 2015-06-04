@@ -11,7 +11,7 @@ class Modelo {
 	
 	private $con;
 	
-	private $order = 'fecha_ini';
+	private $order = 'fecha_ini DESC';
 	
 	function __construct() {
 		$this->con = new mysqli(
@@ -26,7 +26,11 @@ class Modelo {
 	}
 	
 	private function order(){
-		return ' ORDER BY ' . $this->order;
+		return " ORDER BY  {$this->order} ";
+	}
+	
+	private function update(){
+		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < CURDATE()");
 	}
 	
 	public static function getInstance(){
@@ -150,8 +154,19 @@ class Modelo {
 		VALUES ('{$texto}','{$id_producto}','{$id_user}')"
 		);
 	}
+	//INSERTA UN PRODUCTO CON FECHA ACTUAL
+	public function setProducto($titulo, $descripcion, $id_categoria, $imagen, $id_usuario){
+		$date = date('Y/m/d', time());								//FECHA ACTUAL
+		$date2 = date('Y-m-d', strtotime($date . " + 30 days")); 	//CREA FECHA FIN 
 		
-		
+		$this->con->query(
+		"INSERT INTO producto 
+		(`titulo`, `descripcion`, `id_categoria`, `foto`, `id_usuario`, `fecha_ini`, `fecha_fin`) 
+		VALUES ('{$titulo}','{$descripcion}','{$id_categoria}','{$imagen}','{$id_usuario}','{$date}','{$date2}')"
+		);
+	return $this->con->insert_id;
+	}
+	
 }
 	
 	
