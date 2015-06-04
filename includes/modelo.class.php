@@ -167,6 +167,35 @@ class Modelo {
 	return $this->con->insert_id;
 	}
 	
+	//Verifica que el nombre de usuario no esté en la base de datos.
+	public function usuarioNoExiste($username){
+		$resul=$this->con->query(
+			"SELECT * FROM usuario WHERE user = '{$username}' "
+		);
+		if ($resul->num_rows == 0){
+			return true;
+		}
+		else{
+			return false;
+		}		
+	}
+	
+	//Crea un usuario nuevo siempre y cuando no exista el username en la base de datos.
+	public function crearUsuarioNuevo($nombre, $apellido, $dni, $numTarjeta, $nombre_usuario, $mail, $contra){
+		
+		if ($this->usuarioNoExiste($nombre_usuario)){
+			$this->con->query(
+			"INSERT INTO `bestnid`.`usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}')"
+			);
+			$respuesta = "Se creo el usuario exitosamente";
+			return $respuesta;	
+		}
+		else {
+			$respuesta = "El nombre de usuario ya existe";
+			return $respuesta;
+		}
+	}
+	
 }
 	
 	
