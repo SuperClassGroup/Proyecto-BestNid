@@ -22,7 +22,7 @@ if(isset($_POST['user'])){
       <div class="row">
         <div class="input-field col s6">
           <input id="first_name" type="text" class="validate" required name="first_name" />
-          <label for="first_name">Nombree</label>
+          <label for="first_name">Nombre</label>
         </div>
         <div class="input-field col s6">
           <input id="last_name" type="text" class="validate" required name="last_name" />

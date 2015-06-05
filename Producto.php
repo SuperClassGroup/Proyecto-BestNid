@@ -99,7 +99,7 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 <?php 
 	}
 	else{
-		?> <br> <div class="center red-text"><h5>El producto solicitado no se encuentra disponible o ha finalizado</h5><img src="img/error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div>  <?php 
+		?> <br> <div class="center red-text"><h5>El producto solicitado no se encuentra disponible o ha finalizado</h5><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div>  <?php 
 	}
 }
 include('includes/footer.php'); ?>

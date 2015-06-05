@@ -6,7 +6,7 @@ include('includes/header.php');
 	<br>
 		<h4>Usuario Creado</h4>
 		<img src="img/success.jpg" width="250px"></img><br><br>
-		<a class="btn red" href="/login.php">INGRESAR</a>
+		<a class="btn red" href="Login.php">INGRESAR</a>
 	<br>
 </div>
 

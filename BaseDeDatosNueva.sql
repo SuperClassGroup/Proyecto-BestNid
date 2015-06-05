@@ -98,7 +98,7 @@ INSERT INTO `producto` (`id`, `titulo`, `foto`, `descripcion`, `estado`, `fecha_
 (3, 'Espejo', 'fotos/3.jpg', 'Espejo sin marco. Medidas: 0.8m x 1.2m', 0, '2015-05-27', '2015-06-27', 3, 1),
 (4, 'Kriptonita', 'fotos/4.jpg', '200 gramos de Kriptonita', 0, '2015-05-25', '2015-06-25', 5, 1),
 (5, 'Aceite y Vinagre', 'fotos/6.jpg', '200ml de aceite y 300ml de vinagre. No incluye fascos', 0, '2015-05-16', '2015-06-16', 4, 1),
-(6, 'Nexus 4', 'fotos/5.jpg', 'El LG Nexus 4 desarrollado junto con Google. Posee un procesador quad-core Snapdragon S4 Pro a 1.5GHz, pantalla WXGA True HD IPS Plus de 4.7 pulgadas, 2GB de RAM, cámara trasera de 8 megapixels, cámara frontal de 1.3 megapixels y batería de 2100mAh. Además, posee soporte NFC, y carga inalámbrica, aunque no es LTE sino que está limitado a HSPA+.', 1, '2015-05-28', '2015-06-28', 5, 1);
+(6, 'Nexus 4', 'fotos/5.jpg', 'El LG Nexus 4 desarrollado junto con Google. Posee un procesador quad-core Snapdragon S4 Pro a 1.5GHz, pantalla WXGA True HD IPS Plus de 4.7 pulgadas, 2GB de RAM, camara trasera de 8 megapixels, camara frontal de 1.3 megapixels y bateria de 2100mAh. Ademas, posee soporte NFC, y carga inalambrica, aunque no es LTE sino que esta limitado a HSPA+.', 1, '2015-05-28', '2015-06-28', 5, 1);
 
 -- --------------------------------------------------------
 
