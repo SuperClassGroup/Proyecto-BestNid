@@ -4,10 +4,10 @@
 		<title>BestNid</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<link rel="shortcut icon" href="/bestnid.ico" />
 		<link rel="stylesheet" href="/styles/main.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css" />
+		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 	</head>
 	<body>
 		<nav id="nav" class="red">
@@ -21,6 +21,7 @@
 								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span> </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
 							<?php }else{ ?>
+								<li><a href="register.php">REGISTRARSE</a></li>
 								<li><a href="Login.php">INGRESAR</a></li>
 							<?php } ?>
 						</ul>
@@ -33,6 +34,7 @@
 								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span>  </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
 							<?php }else{ ?>
+								<li><a href="register.php">REGISTRARSE</a></li>
 								<li><a href="Login.php">INGRESAR</a></li>
 							<?php } ?>
 							<li class="divider"></li>

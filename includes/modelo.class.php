@@ -184,16 +184,18 @@ class Modelo {
 	public function crearUsuarioNuevo($nombre, $apellido, $dni, $numTarjeta, $nombre_usuario, $mail, $contra){
 		
 		if ($this->usuarioNoExiste($nombre_usuario)){
-			$this->con->query(
-			"INSERT INTO `bestnid`.`usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}')"
-			);
-			$respuesta = "Se creo el usuario exitosamente";
-			return $respuesta;	
+			if($this->con->query("INSERT INTO `usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}')")
+			){
+			$respuesta = "Se creo el usuario exitosamente";	
+			}
+			else{
+			$respuesta = "Error al crear usuario [DB ERROR]";
+			}
 		}
 		else {
-			$respuesta = "El nombre de usuario ya existe";
-			return $respuesta;
+			$respuesta = "El nombre de usuario elegido ya existe";
 		}
+	return $respuesta;
 	}
 	
 }

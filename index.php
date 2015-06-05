@@ -42,8 +42,9 @@ if (isset($_REQUEST['buscar'])){
 			<a class="dropdown-button btn red lighten-1" href="#" data-activates="order" style="margin-bottom:5px">Ordenar</a>
 
 			<ul id="order" class="dropdown-content">
-				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=titulo">Por nombre</a></li>
-				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini">Por fecha</a></li>
+				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini DESC">Mas Recientes</a></li>
+				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini ASC">Mas Antiguos</a></li>
+				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=titulo">Alfabetico</a></li>
 			</ul>
 			</div>
 		</div>

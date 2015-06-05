@@ -5,17 +5,16 @@ include('includes/modelo.class.php');
 $con = new Modelo();
 $categorias = $con->getAllCategories();
 
+$error = true; 
 if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 	include('includes/subirImagen.class.php'); 
 	$subir = new imgUpldr;
 	$subir->init($_FILES['imagen']);
-	if($subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
+	if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
 	$id = $con->setProducto($_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}",$_SESSION['id']);
 	header("Location: /SubastaCreada.php?id={$id}");
 	}
-	else{ ?><p class="center red-text"><?php  echo ($subir->_r);  ?></p><?php }
 }
-
 ?>
 
 <div class="container">
@@ -23,6 +22,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 	<li class="divider"></li>
 	<h5 class="center red-text">Crear Subasta</h5>
 	<li class="divider"></li>
+	<?php if($error == false){ ?><p class="center red-text">ERROR: <?php  echo ($subir->_r);  ?></p> <?php } ?>
 	<div class="row center" >
 	  <form class="col s12 " action="#" method="post" enctype="multipart/form-data">
 		<div class="row">

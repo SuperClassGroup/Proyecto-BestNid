@@ -5,13 +5,19 @@ include('includes/modelo.class.php');
 
 if(isset($_POST['user'])){
 	$con = new Modelo();
-	echo $con->crearUsuarioNuevo($_POST['first_name'],$_POST['last_name'],$_POST['dni'],$_POST['creditcard'],$_POST['user'],$_POST['email'],$_POST['password']);
-
+	$res = $con->crearUsuarioNuevo($_POST['first_name'],$_POST['last_name'],$_POST['dni'],$_POST['creditcard'],$_POST['user'],$_POST['email'],$_POST['password']);
+	if ($res == "Se creo el usuario exitosamente" ){
+		header("Location: /UsuarioCreado.php");
+	}else{
+		?><p class="center red-text">ERROR: <?php echo $res ?></p><?php
+	}
 }
 
 ?>
 <br>
-  <div class="row">
+<div class="container">
+  <div class="row center">
+	<h3 class="red-text">Bienvenido a Bestnid</h3>
     <form class="col s12" action="/register.php" method="POST">
       <div class="row">
         <div class="input-field col s6">
@@ -48,9 +54,10 @@ if(isset($_POST['user'])){
         </div>
       </div>
 	  <div class="row center">
-  	  <input class="btn waves-effect waves-light red accent-2" type="submit" name="submit" value="Registrarse" />
+  	  <button class="btn red z-depth-1" type="submit" >Registrarse</button>
 	  </div>
-	  <span class="red-text text-darken-2">Al registrarme, declaro que soy mayor de edad y acepto los Términos y Condiciones y las Políticas de Privacidad de Bestnid</span>
+	  <p class="red-text text-darken-2 center">Al registrarme, declaro que soy mayor de edad y acepto los Términos y Condiciones y las Políticas de Privacidad de Bestnid</p>
+	  <br>
     </form>
   </div>
 </div>

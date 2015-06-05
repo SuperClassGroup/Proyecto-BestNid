@@ -18,6 +18,7 @@ if(isset($_REQUEST['user'])){
 <br>
 <br>
 <div class="container center-align">
+	<h3 class="red-text">Ingresar</h3>
 		<form class="container" action="/Login.php" method="post">
 			<div class="row">
 				<div class="input-field col s12">
