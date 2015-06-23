@@ -11,7 +11,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 	$subir = new imgUpldr;
 	$subir->init($_FILES['imagen']);
 	if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
-	$id = $con->setProducto($_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}",$_SESSION['id']);
+	$id = $con->setProducto($_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}",$_SESSION['id'],$_POST['duracion']);
 	header("Location: /SubastaCreada.php?id={$id}");
 	}
 }
@@ -19,9 +19,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 
 <div class="container">
 <br>
-	<li class="divider"></li>
-	<h5 class="center red-text">Crear Subasta</h5>
-	<li class="divider"></li>
+	<h5 class="center red-text">CREAR SUBASTA</h5>
 	<?php if($error == false){ ?><p class="center red-text">ERROR: <?php  echo ($subir->_r);  ?></p> <?php } ?>
 	<div class="row center" >
 	  <form class="col s12 " action="#" method="post" enctype="multipart/form-data">
@@ -54,6 +52,12 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 					<option value="<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></li>
 					<?php } ?>
 				</select>
+			</div>
+			<div class="col s12">
+				<p class="range-field">
+						<label for="duracion">Seleccione la duracion en dias de la publicacion (15 a 30 dias) </label>
+						<input type="range" id="duracion" min="15" max="30" name="duracion" value="30"/>
+				</p>
 			</div>
 		</div>
 		<div class="row center">

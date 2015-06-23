@@ -7,6 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 		<link rel="shortcut icon" href="/bestnid.ico" />
 		<link rel="stylesheet" href="/styles/main.css" />
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 	</head>
 	<body>
@@ -18,8 +19,11 @@
 							<li><a href="/">VER LISTADO</a></li>
 							<?php if(isset($_SESSION['user'])){ ?>
 								<li><a href="CrearSubasta.php">SUBASTAR</a></li>
-								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span> </a></li>
+								<li><a href="Perfil.php"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span> </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
+								<?php
+								if($_SESSION['admin']){ ?><li><a href="menuAdmin.php"><i class="white-text material-icons" style="font-size:1.4rem">security</i></a></li><?php }
+								?>
 							<?php }else{ ?>
 								<li><a href="register.php">REGISTRARSE</a></li>
 								<li><a href="Login.php">INGRESAR</a></li>
@@ -31,7 +35,7 @@
 							<li><a href="/">VER LISTADO</a></li>
 							<?php if(isset($_SESSION['user'])){ ?>
 								<li><a href="CrearSubasta.php">SUBASTAR</a></li>
-								<li><a href="Perfil.php?=id_usuario"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span>  </a></li>
+								<li><a href="Perfil.php"><span style="text-transform:uppercase"> <?php echo $_SESSION['user']; ?> </span>  </a></li>
 								<li><a href="Logout.php">SALIR</a></li>
 							<?php }else{ ?>
 								<li><a href="register.php">REGISTRARSE</a></li>

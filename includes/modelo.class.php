@@ -1,6 +1,13 @@
 <?php
 
 class Modelo {
+
+/* ESTADOS DE LAS SUBASTAS:
+	0=ACTIVA
+	1=TERMINADA
+	2=FALTA ELEGIR GANADOR
+	3=CANCELADA 
+*/
 	
 	private static $instancia;
 	
@@ -29,8 +36,8 @@ class Modelo {
 		return " ORDER BY  {$this->order} ";
 	}
 	
-	private function update(){
-		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < CURDATE()");
+	public function update(){
+		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < CURDATE() AND estado = 0");
 	}
 	
 	public static function getInstance(){
@@ -78,20 +85,6 @@ class Modelo {
 		return $resultado;
 		
 	}
-	
-	// FUNCION DE VALEN PARA VERIFICAR USUARIO NO FUNCIONA, NO ENTIENDO PORQUE
-	// public function verifyUser($user, $pass){
-		// var_dump($user);
-		// $res = $this->con->query("SELECT * FROM 'usuario' WHERE 'user' = {$user}");
-
-		// var_dump($res);
-		// if($res){
-			// $user = $res->fetch_assoc();
-			// if( $user['pass'] == $pass ) return true;
-		// }
-		// return false;		
-	// } 
-	
 	
 	//NUEVA FUNCION DE VERIFICAR QUE SI FUNCIONA, PERO HACE MAS LABURO
 		public function verifyUser($user, $pass){
@@ -146,6 +139,15 @@ class Modelo {
 	return $resultado;
 	}
 	
+		//DADA LA ID DE UN PRODUCTO, DEVUELVE TODOS LOS COMENTARIOS PARA ESE PRODUCTO
+	public function getNombreCategoria($id){
+		$res = $this->con->query("SELECT * FROM categoria WHERE id = '{$id}' ");
+		$fila = array();
+		$fila[] = $res->fetch_assoc() ;
+		$resultado = $fila[0]['nombre'];
+	return $resultado;
+	}
+	
 	//INSERTA UN COMENTARIO A LA TABLA CON LOS PARAMETROS $texto, $id_producto, $id_user
 	public function setComentario($texto, $id_producto, $id_user){
 		$this->con->query(
@@ -155,9 +157,12 @@ class Modelo {
 		);
 	}
 	//INSERTA UN PRODUCTO CON FECHA ACTUAL
-	public function setProducto($titulo, $descripcion, $id_categoria, $imagen, $id_usuario){
+	public function setProducto($titulo, $descripcion, $id_categoria, $imagen, $id_usuario, $duracion){
+	
+		date_default_timezone_set('America/Argentina/Buenos_Aires'); 
+		
 		$date = date('Y/m/d', time());								//FECHA ACTUAL
-		$date2 = date('Y-m-d', strtotime($date . " + 30 days")); 	//CREA FECHA FIN 
+		$date2 = date('Y-m-d', strtotime($date . " + {$duracion} days")); 	//CREA FECHA FIN 
 		
 		$this->con->query(
 		"INSERT INTO producto 
@@ -196,6 +201,58 @@ class Modelo {
 			$respuesta = "El nombre de usuario elegido ya existe";
 		}
 	return $respuesta;
+	}
+	
+	public function setRespuesta($respuesta,$idcomentario){
+		$this->con->query("UPDATE `comentario` SET `respuesta`= '{$respuesta}' WHERE id = '{$idcomentario}'");
+	}
+	
+	public function DiasRestantes($date){
+		date_default_timezone_set('America/Argentina/Buenos_Aires'); 
+		
+		$currentdate = date('Y/m/d',time());
+		
+		$diff = abs(strtotime($date) - strtotime($currentdate));
+
+		$days = floor(($diff / (60*60*24)));
+
+ 	return $days;
+	}
+	
+	public function DiasDesdeHasta($date1,$date2){
+		date_default_timezone_set('America/Argentina/Buenos_Aires'); 
+		
+		$diff = abs(strtotime($date1) - strtotime($date2));
+
+		$days = floor(($diff / (60*60*24)));
+		
+ 	return $days;
+	}
+	
+	public function getProductsOfUser($id){
+		$res = $this->con->query("SELECT * FROM producto WHERE id_usuario = '{$id}' ".$this->order());
+		
+		$resultado = array();
+		while( $fila = $res->fetch_assoc() ){
+			$resultado[] = $fila;
+		}
+		return $resultado;
+		
+	}
+	
+	public function updateProducto($id,$titulo,$descripcion,$idcategoria){
+		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}' WHERE id = '{$id}' ");
+	}
+	public function updateProductoConFoto($id,$titulo,$descripcion,$idcategoria,$foto){
+		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}', `foto`= '{$foto}' WHERE id = '{$id}' ");
+	}
+	
+	public function getUser($id){
+		$res = $this->con->query("SELECT * FROM usuario WHERE id = '{$id}' ");
+		$fila = array();
+		$fila[] = $res->fetch_assoc() ;
+		$resultado = $fila[0];
+		return $resultado;
 	}
 	
 }

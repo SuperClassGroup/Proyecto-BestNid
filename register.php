@@ -21,11 +21,11 @@ if(isset($_POST['user'])){
     <form class="col s12" action="/register.php" method="POST">
       <div class="row">
         <div class="input-field col s6">
-          <input id="first_name" type="text" class="validate" required name="first_name" />
+          <input id="first_name" type="text" class="validate" required name="first_name" value="<?php if($_POST){ echo($_POST['first_name']);}?>" />
           <label for="first_name">Nombre</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate" required name="last_name" />
+          <input id="last_name" type="text" class="validate" required name="last_name" value="<?php if($_POST){ echo($_POST['last_name']);}?>"/>
           <label for="last_name">Apellido</label>
         </div>
       </div>
@@ -41,15 +41,15 @@ if(isset($_POST['user'])){
       </div>
 	     <div class="row">
         <div class="input-field col s12 m6 l4">
-          <input id="creditcard" type="number" class="validate" required name="creditcard" />
+          <input id="creditcard" type="number" class="validate" required name="creditcard" value="<?php if($_POST){ echo($_POST['creditcard']);}?>" />
           <label for="creditcard">Tarjeta de Credito</label>
         </div>
         <div class="input-field col s12 m6 l4">
-          <input id="dni" type="number" class="validate" required name="dni" />
+          <input id="dni" type="number" class="validate" required name="dni" value="<?php if($_POST){ echo($_POST['dni']);}?>" />
           <label for="dni">Documento</label>
         </div>
         <div class="input-field col s12 l4">
-          <input id="email" type="email" class="validate" required name="email" />
+          <input id="email" type="email" class="validate" required name="email" value="<?php if($_POST){ echo($_POST['email']);}?>" />
           <label for="email">Email</label>
         </div>
       </div>

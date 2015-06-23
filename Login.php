@@ -10,6 +10,7 @@ if(isset($_REQUEST['user'])){
 	if( $user = $con->verifyUser($_REQUEST['user'],$_REQUEST['pass']) ){
 		$_SESSION['user'] = $_REQUEST['user'];
 		$_SESSION['id'] = $user['id'];
+		$_SESSION['admin'] = $user['admin'];
 		header("Location: /");
 	}
 }
