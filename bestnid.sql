@@ -147,8 +147,8 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `id_producto` int(11) NOT NULL,
   `monto` double NOT NULL,
   `motivo` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT KEY `motivo` (`motivo`)
+  PRIMARY KEY (`id`)
+  /*FULLTEXT KEY `motivo` (`motivo`)*/
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,6 +5,12 @@ include('includes/modelo.class.php');
 $con = new Modelo();
 $categorias = $con->getAllCategories();
 
+// Si no esta logueado no tiene que estar aca.
+if(!isset($_SESSION['id'])){
+	header('Location: Login.php');
+	die;
+}
+
 $error = true; 
 if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 	include('includes/subirImagen.class.php'); 
@@ -18,7 +24,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 ?>
 
 <div class="container">
-<br>
+	<br>
 	<h5 class="center red-text">CREAR SUBASTA</h5>
 	<?php if($error == false){ ?><p class="center red-text">ERROR: <?php  echo ($subir->_r);  ?></p> <?php } ?>
 	<div class="row center" >

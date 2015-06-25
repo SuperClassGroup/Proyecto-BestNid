@@ -16,12 +16,12 @@
 				case 0:
 					?>
 					<a href="/Producto.php?idproducto=<?php echo $producto['id']; ?>"><u class="green-text text-lighten-2">Subasta activa</u></a> -
+					<a href="elegirGanador.php?id=<?php echo $producto['id']; ?>"><u class="orange-text">Seleccionar Ganador</u></a> -
 					<a href="editarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="blue-text text-lighten-2">Editar</u></a> -
-					<a href="#Cancelar" ><u class="red-text text-lighten-2">Cancelar</u></a>
-					<?php
+					<a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="red-text text-lighten-2">Cancelar</u></a><?php
 					break;
 				case 2:
-					?><a href="#ElegirGanador"><u class="orange-text"> Seleccionar Ganador </u></a> <?php
+					?><a href="elegirGanador.php?id=<?php echo $producto['id']; ?>"><u class="orange-text">Seleccionar Ganador</u></a><?php
 					break;
 				case 1:
 					?><span class="red-text">Subasta Finalizada</span> <?php

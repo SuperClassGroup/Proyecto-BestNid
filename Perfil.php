@@ -13,12 +13,12 @@ if (isset($_SESSION['id'])){
 	  <ul class="tabs">
 		<li class="tab"><a href="#MiCuenta">Cuenta</a></li>
 		<li class="tab"><a href="#MisSubastas">Subastas</a></li>
-		<li class="tab"><a href="#test3">Ofertas</a></li>
+		<li class="tab"><a href="#MisOfertas">Ofertas</a></li>
 	  </ul>
 	</div>
 	<div id="MiCuenta" class="col s12"><br> <?php include('MiCuenta.php'); ?></div>
 	<div id="MisSubastas" class="col s12"><br> <?php include('MisSubastas.php'); ?> </div>
-	<div id="test3" class="col s12"><br> <p class="center red-text">// IMPRIMIR DATOS DE MIS OFERTAS //</p> </div>
+	<div id="MisOfertas" class="col s12"><br> <?php include('MisOfertas.php'); ?> </div>
 </div>
   
 <?php
