@@ -37,7 +37,9 @@ class Modelo {
 	}
 	
 	public function update(){
-		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < CURDATE() AND estado = 0");
+		date_default_timezone_set('America/Argentina/Buenos_Aires'); 
+		$date = date('Y/m/d', time());
+		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < '{$date}' AND estado = 0");
 	}
 	
 	public static function getInstance(){
@@ -266,9 +268,12 @@ class Modelo {
 		$desde = date('Y-m-d',$desde);
 		$hasta = date('Y-m-d',$hasta);		
 		$res = $this->con->query("SELECT * FROM producto WHERE fecha_fin > '{$desde}' AND fecha_fin < '{$hasta}' AND estado <> 0");
-		$array = $res->fetch_all(MYSQLI_ASSOC);
+		$ret = array();
+		while($ofe=$res->fetch_assoc()){			
+			$ret[]=$ofe;
+		}
 		$finalizados=0;$vencidos=0;$cancelados=0;
-		foreach($array as $a){
+		foreach($ret as $a){
 			switch($a['estado']){
 				case 1: $finalizados = $finalizados +1; break;
 				case 2: $vencidos = $vencidos +1; break;
@@ -308,7 +313,10 @@ class Modelo {
 	
 	public function getMisOfertas(){
 		$res = $this->con->query("SELECT v.motivo, p.titulo, p.foto, p.id, v.monto FROM venta v INNER JOIN producto p ON p.id = v.id_producto WHERE v.id_usuario = '{$_SESSION['id']}'");
-		$ret = $res->fetch_all(MYSQLI_ASSOC);
+		$ret = array();
+		while($ofe=$res->fetch_assoc()){			
+			$ret[]=$ofe;
+		}
 		return $ret;
 	}
 

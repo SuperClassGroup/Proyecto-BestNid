@@ -12,11 +12,11 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 		$subir->init($_FILES['imagen']);
 		if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
 		$con->updateProductoConFoto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}");
-		header("Location: producto.php?idproducto={$_GET['id']}");
+		header("Location: Producto.php?idproducto={$_GET['id']}");
 		}
 	}else{
 		$con->updateProducto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria']);
-		header("Location: producto.php?idproducto={$_GET['id']}");
+		header("Location: Producto.php?idproducto={$_GET['id']}");
 	}
 }
 $categorias = $con->getAllCategories();
