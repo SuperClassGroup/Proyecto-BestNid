@@ -44,10 +44,10 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 			<?php if($producto['estado'] == 0 ){ ?>
 			<div class="row red-text center">
 				<div class="col s6">
-					<span>Fecha de inicio:<br> <?php echo $producto['fecha_ini'] ?></span>
+					<span>Fecha de inicio:<br> <?php echo date('d-m-Y',strtotime($producto['fecha_ini'])); ?></span>
 				</div>
 				<div class="col s6">
-					<span>Fecha de fin:<br> <?php echo $producto['fecha_fin']?></span>
+					<span>Fecha de fin:<br> <?php echo date('d-m-Y',strtotime($producto['fecha_fin'])); ?></span>
 				</div>
 				<?php
 				$dias = $con->DiasRestantes($producto['fecha_fin'] );

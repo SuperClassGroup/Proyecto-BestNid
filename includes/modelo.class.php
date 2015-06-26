@@ -12,7 +12,7 @@ class Modelo {
 	private static $instancia;
 	
 	private static $user = 'root';
-	private static $pass = '1234';
+	private static $pass = '';
 	private static $host = '127.0.0.1';
 	private static $dbnm = 'bestnid';
 	
@@ -87,7 +87,7 @@ class Modelo {
 	}
 	
 	//NUEVA FUNCION DE VERIFICAR QUE SI FUNCIONA, PERO HACE MAS LABURO
-	public function verifyUser($user, $pass){
+		public function verifyUser($user, $pass){
 		$res = $this->con->query("SELECT * FROM usuario");
 		while( $fila = $res->fetch_assoc() ){
 			if($fila['user'] == $user){
@@ -97,12 +97,7 @@ class Modelo {
 		}
 		?><p class="center red-text" > Usuario Invalido </p> <?php
 		return false;
-	}
-
-	public function getOferta($id){
-		$res = $this->con->query("SELECT * FROM venta WHERE id = '{$id}' ");
-		$fila = $res->fetch_assoc();
-		return $fila;
+				
 	}
 	
 	//BUSCAR PRODUCTOS CON $TEXTO EN DESCRIPCION O TITULO
@@ -122,7 +117,7 @@ class Modelo {
 		$fila[] = $res->fetch_assoc() ;
 		$resultado = $fila[0];
 		
-		return $resultado;
+	return $resultado;
 	}
 	
 	//DADA EL ID DE UN USUARIO DEVUELVE EL NOMBRE DE USUARIO
@@ -176,23 +171,6 @@ class Modelo {
 		);
 	return $this->con->insert_id;
 	}
-	//INSERTA UNA OFERTA
-	public function setOferta( $id_usuario, $id_producto, $monto, $motivo ){
-	
-		$this->con->query(
-			"INSERT INTO `venta`(`id`, `id_usuario`, `id_producto`, `monto`, `motivo`) VALUES (NULL,'{$id_usuario}','{$id_producto}','{$monto}','{$motivo}')"
-		);
-	return $this->con->insert_id;
-	}
-
-	public function hasOferta( $id_producto ){
-	
-		$q = $this->con->query(
-			"SELECT * FROM venta WHERE id_usuario = '{$_SESSION['id']}' AND id_producto = '{$id_producto}' "
-		);
-
-		return ( $q->num_rows > 0 );
-	}
 	
 	//Verifica que el nombre de usuario no esté en la base de datos.
 	public function usuarioNoExiste($username){
@@ -205,15 +183,6 @@ class Modelo {
 		else{
 			return false;
 		}		
-	}
-
-	public function getMisOfertas(){
-		$res = $this->con->query("SELECT v.motivo, p.titulo, p.id, v.monto FROM venta v INNER JOIN producto p ON p.id = v.id_usuario WHERE p.id_usuario = '{$_SESSION['id']}'");
-		$ret = array();
-		while($ofe=$res->fetch_assoc()){
-			$ret[]=$ofe;
-		}
-		return $ret;
 	}
 	
 	//Crea un usuario nuevo siempre y cuando no exista el username en la base de datos.
@@ -236,10 +205,6 @@ class Modelo {
 	
 	public function setRespuesta($respuesta,$idcomentario){
 		$this->con->query("UPDATE `comentario` SET `respuesta`= '{$respuesta}' WHERE id = '{$idcomentario}'");
-	}
-	
-	public function finalizarProducto($id){
-		$this->con->query("UPDATE `producto` SET `estado`= '1' WHERE id = '{$id}'");
 	}
 	
 	public function DiasRestantes($date){
@@ -274,7 +239,83 @@ class Modelo {
 		return $resultado;
 		
 	}
+	
+	public function updateProducto($id,$titulo,$descripcion,$idcategoria){
+		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}' WHERE id = '{$id}' ");
+	}
+	public function updateProductoConFoto($id,$titulo,$descripcion,$idcategoria,$foto){
+		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}', `foto`= '{$foto}' WHERE id = '{$id}' ");
+	}
+	
+	public function getUser($id){
+		$res = $this->con->query("SELECT * FROM usuario WHERE id = '{$id}' ");
+		$fila = array();
+		$fila[] = $res->fetch_assoc() ;
+		$resultado = $fila[0];
+		return $resultado;
+	}
+	
+	public function getCreados($desde,$hasta){
+		$desde = date('Y-m-d',$desde);
+		$hasta = date('Y-m-d',$hasta);		
+		$res = $this->con->query("SELECT * FROM producto WHERE fecha_ini > '{$desde}' AND fecha_ini < '{$hasta}' ");
+		return $res->num_rows;
+	}
+	
+	public function getFinalizados($desde,$hasta){
+		$desde = date('Y-m-d',$desde);
+		$hasta = date('Y-m-d',$hasta);		
+		$res = $this->con->query("SELECT * FROM producto WHERE fecha_fin > '{$desde}' AND fecha_fin < '{$hasta}' AND estado <> 0");
+		$array = $res->fetch_all(MYSQLI_ASSOC);
+		$finalizados=0;$vencidos=0;$cancelados=0;
+		foreach($array as $a){
+			switch($a['estado']){
+				case 1: $finalizados = $finalizados +1; break;
+				case 2: $vencidos = $vencidos +1; break;
+				case 3: $cancelados = $cancelados+ 1; break;
+			}
+		}
+		$resultado['finalizados'] = $finalizados;
+		$resultado['vencidos'] = $vencidos;
+		$resultado['cancelados'] = $cancelados;
+		
+		return $resultado;
+	}
+	
+	
+	public function getOferta($id){
+		$res = $this->con->query("SELECT * FROM venta WHERE id = '{$id}' ");
+		$fila = $res->fetch_assoc();
+		return $fila;
+	}
+	
+	public function setOferta( $id_usuario, $id_producto, $monto, $motivo ){
+	
+		$this->con->query(
+			"INSERT INTO `venta`(`id`, `id_usuario`, `id_producto`, `monto`, `motivo`) VALUES (NULL,'{$id_usuario}','{$id_producto}','{$monto}','{$motivo}')"
+		);
+	return $this->con->insert_id;
+	}
+	
+	public function hasOferta( $id_producto ){
+	
+		$q = $this->con->query(
+			"SELECT * FROM venta WHERE id_usuario = '{$_SESSION['id']}' AND id_producto = '{$id_producto}' "
+		);
 
+		return ( $q->num_rows > 0 );
+	}
+	
+	public function getMisOfertas(){
+		$res = $this->con->query("SELECT v.motivo, p.titulo, p.foto, p.id, v.monto FROM venta v INNER JOIN producto p ON p.id = v.id_producto WHERE v.id_usuario = '{$_SESSION['id']}'");
+		$ret = $res->fetch_all(MYSQLI_ASSOC);
+		return $ret;
+	}
+
+	public function finalizarProducto($id){
+		$this->con->query("UPDATE `producto` SET `estado`= '1' WHERE id = '{$id}'");
+	}
+	
 	public function setGanador( $id_producto, $id_user_ganador ){
 		$this->con->query("UPDATE `producto` SET `id_user_ganador`= '{$id_user_ganador}' WHERE id = '{$id_producto}' ");
 	}
@@ -293,21 +334,6 @@ class Modelo {
 
 	public function cancelarProducto($idprod){
 		$this->con->query("UPDATE `producto` SET `estado`= '3' WHERE id = '{$idprod}' ");
-	}
-	
-	public function updateProducto($id,$titulo,$descripcion,$idcategoria){
-		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}' WHERE id = '{$id}' ");
-	}
-	public function updateProductoConFoto($id,$titulo,$descripcion,$idcategoria,$foto){
-		$this->con->query("UPDATE `producto` SET `titulo`= '{$titulo}', `descripcion`= '{$descripcion}', `id_categoria`= '{$idcategoria}', `foto`= '{$foto}' WHERE id = '{$id}' ");
-	}
-	
-	public function getUser($id){
-		$res = $this->con->query("SELECT * FROM usuario WHERE id = '{$id}' ");
-		$fila = array();
-		$fila[] = $res->fetch_assoc() ;
-		$resultado = $fila[0];
-		return $resultado;
 	}
 	
 }

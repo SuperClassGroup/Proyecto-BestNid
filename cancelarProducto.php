@@ -16,11 +16,11 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
     }
 
     if ($producto['id_usuario'] == $_SESSION['id']){
-        ?><div class="container"><br>
+        ?><div class="container center"><br>
             <li class="divider"></li>
             <h5 class="center red-text">Esta seguro que desea cancelar la subasta?</h5>
             <li class="divider"></li><br><br>
-            <a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>&ok" class="btn waves-effect waves-light red lighten-1">SI, cancelar</a> <a href="Perfil.php">No, volver a mi perfil</a>
+            <a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>&ok" class="btn waves-effect waves-light red lighten-1">SI, cancelar</a> <a class="btn waves-effect waves-light red lighten-1"" href="Perfil.php">No, volver a mi perfil</a>
         </div>
     <?php }else{ ?>
             <div class="center">

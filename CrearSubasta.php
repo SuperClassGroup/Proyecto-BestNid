@@ -24,7 +24,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 ?>
 
 <div class="container">
-	<br>
+<br>
 	<h5 class="center red-text">CREAR SUBASTA</h5>
 	<?php if($error == false){ ?><p class="center red-text">ERROR: <?php  echo ($subir->_r);  ?></p> <?php } ?>
 	<div class="row center" >

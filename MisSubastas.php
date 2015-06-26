@@ -4,7 +4,7 @@
 <?php if (empty($productos)){ ?> <p class="col s12 red-text center"> NO SE ENCONTRARON SUBASTAS </p> <?php } ?> 
 <ul class="collection">
 	<li class="collection-item">
-	<div class="center"> <a class="red-text" href="crearSubasta.php"> CREAR NUEVA SUBASTA </a> </div>
+	<div class="center"> <a class="red-text" href="CrearSubasta.php"> CREAR NUEVA SUBASTA </a> </div>
 	</li>
 	<?php foreach( $productos as $producto ){ ?>
 	<li class="collection-item avatar">
@@ -16,7 +16,6 @@
 				case 0:
 					?>
 					<a href="/Producto.php?idproducto=<?php echo $producto['id']; ?>"><u class="green-text text-lighten-2">Subasta activa</u></a> -
-					<a href="elegirGanador.php?id=<?php echo $producto['id']; ?>"><u class="orange-text">Seleccionar Ganador</u></a> -
 					<a href="editarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="blue-text text-lighten-2">Editar</u></a> -
 					<a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="red-text text-lighten-2">Cancelar</u></a><?php
 					break;
