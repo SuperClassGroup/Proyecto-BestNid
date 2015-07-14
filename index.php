@@ -30,10 +30,10 @@ if (isset($_REQUEST['buscar'])){
 				<a class="dropdown-button btn red lighten-1" href="#" data-activates="drop" style="margin-bottom:5px">Categorias</a>
 
 				<ul id="drop" class="dropdown-content">
-					<li><a class="red-text text-darken 1" href="/">Todas</a></li>
+					<li><a class="red-text text-darken 1" href="index.php">Todas</a></li>
 					<li class="divider"></li>
 					<?php foreach( $categorias as $categoria ){ ?>
-						<li><a class="red-text text-darken-2" href="/?categoria=<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></a></li>
+						<li><a class="red-text text-darken-2" href="index.php?categoria=<?php echo $categoria['id']; ?>"><?php echo $categoria['nombre']; ?></a></li>
 					<?php } ?>
 				</ul>
 			</div>
@@ -41,9 +41,9 @@ if (isset($_REQUEST['buscar'])){
 			<a class="dropdown-button btn red lighten-1" href="#" data-activates="order" style="margin-bottom:5px">Ordenar</a>
 
 			<ul id="order" class="dropdown-content">
-				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini DESC">Mas Recientes</a></li>
-				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini ASC">Mas Antiguos</a></li>
-				<li><a class="red-text text-darken 1" href="/?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=titulo">Alfabetico</a></li>
+				<li><a class="red-text text-darken 1" href="index.php?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini DESC">Mas Recientes</a></li>
+				<li><a class="red-text text-darken 1" href="index.php?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=fecha_ini ASC">Mas Antiguos</a></li>
+				<li><a class="red-text text-darken 1" href="index.php?<?php if(isset($_REQUEST['categoria'])) echo 'categoria='.$_REQUEST['categoria'].'&'; if(isset($_REQUEST['buscar'])) echo 'buscar='.$_REQUEST['buscar'].'&'; ?>order=titulo">Alfabetico</a></li>
 			</ul>
 			</div>
 		</div>
@@ -85,8 +85,8 @@ if (isset($_REQUEST['buscar'])){
 				<p class="grey-text truncate" style="font-size:10px">Finaliza en <?php echo $con->DiasRestantes($producto['fecha_fin']); ?> dias</p>
 			</div>
 			<div class="card-action" style="padding:10px" >
-					<a class="red-text left" style="margin-right:0px;margin-left:5px" href="/Producto.php?idproducto=<?php echo $producto['id']; ?>">Ver más</a>
-					<a class="red-text right" style="margin-right:5px;margin-left:0px" href="/Comprar.php?id=<?php echo $producto['id']; ?>">Comprar</a>
+					<a class="red-text left" style="margin-right:0px;margin-left:5px" href="Producto.php?idproducto=<?php echo $producto['id']; ?>">Ver más</a>
+					<a class="red-text right" style="margin-right:5px;margin-left:0px" href="Comprar.php?id=<?php echo $producto['id']; ?>">Comprar</a>
 			</div>
 		  </div>
 		</div>

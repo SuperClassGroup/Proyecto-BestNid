@@ -6,15 +6,11 @@ if(isset($_POST['desde']) && isset($_POST['hasta'])){
 		$ok= true;
 		$desde = strtotime($_POST['desde']);
 		$hasta = strtotime($_POST['hasta']);
-		if($desde < $hasta){
-			$creadas = $con->getCreados($desde,$hasta);
-			$f = $con->getFinalizados($desde,$hasta);
-			
-		}else{
-			$aux = $desde; $desde = $hasta; $hasta = $aux;
-			$creadas = $con->getCreados($desde,$hasta);
-			$f = $con->getFinalizados($desde,$hasta);
+		if(!($desde < $hasta)){
+			$aux = $desde; $desde = $hasta; $hasta = $aux; //INVERTIR FECHAS, EL USUARIO LAS INGRESO AL REVES.
 		}
+		$creadas = $con->getCreados($desde,$hasta);
+		$f = $con->getFinalizados($desde,$hasta);
 	}else{
 		$vacio = true;
 	}

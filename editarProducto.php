@@ -12,18 +12,21 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 		$subir->init($_FILES['imagen']);
 		if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
 		$con->updateProductoConFoto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}");
-		header("Location: Producto.php?idproducto={$_GET['id']}");
+		header("Location: producto.php?idproducto={$_GET['id']}");
 		}
 	}else{
 		$con->updateProducto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria']);
-		header("Location: Producto.php?idproducto={$_GET['id']}");
+		header("Location: producto.php?idproducto={$_GET['id']}");
 	}
 }
 $categorias = $con->getAllCategories();
 
+
+
 if (isset($_SESSION['id']) && isset($_GET['id'])){
 	$producto = $con->getProduct($_GET['id']);
 	if ($producto['id_usuario'] == $_SESSION['id']){
+	if (empty($con->getOfertasOfProduct($producto['id']))){
 ?>
 <div class="container"><br>
 	<li class="divider"></li>
@@ -69,13 +72,24 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
 	</div>
 </div>
   
+
 <?php
+}else{ ?> 
+<div class="center">
+	<br>
+	<h5 class="center red-text"> PAGINA NO DISPONIBLE </h5>
+	<p class="center">No puedes editar una subasta que ya tiene ofertas</p>
+	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br>
+	</div> 
+<?php
+}
 }else{
 ?>
 <div class="center">
 	<br>
 	<h5 class="center red-text"> PAGINA NO DISPONIBLE </h5>
-	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div> 
+	<p class="center">No puedes modificar una subasta que no es tuya</p>
+	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br>
 </div>
 <?php
 }
@@ -84,8 +98,9 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
 <div class="center">
 	<br>
 	<h5 class="center red-text"> PAGINA NO DISPONIBLE </h5>
-	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div> 
+	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br>
 </div>
 <?php }
+
 
  include('includes/footer.php'); ?>

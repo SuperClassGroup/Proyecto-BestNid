@@ -26,14 +26,14 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
             <div class="center">
                 <br>
                 <h5 class="center red-text"> PAGINA NO DISPONIBLE </h5>
-                <br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br>
+                <br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br>
             </div>
     <?php }
 }else{ ?>
     <div class="center">
         <br>
         <h5 class="center red-text"> PAGINA NO DISPONIBLE </h5>
-        <br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br>
+        <br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br>
     </div>
 <?php }
 

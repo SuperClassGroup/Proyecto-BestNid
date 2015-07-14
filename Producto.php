@@ -66,7 +66,7 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 			<br>
 			<div class="row center" >
 				<div class="col s12" >
-					<a class="red waves-effect waves-light btn" href="/Comprar.php?id=<?php echo $producto['id'];?>" ><i class="mdi-action-shopping-cart right"></i>comprar</a>
+					<a class="red waves-effect waves-light btn" href="Comprar.php?id=<?php echo $producto['id'];?>" ><i class="mdi-action-shopping-cart right"></i>comprar</a>
 				</div>
 			</div>
 			<?php } else{ ?>
@@ -139,7 +139,7 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 <?php 
 	}
 	else{
-		?> <br> <div class="center red-text"><h5>El producto solicitado no se encuentra disponible o ha finalizado</h5><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div>  <?php 
+		?> <br> <div class="center red-text"><h5>El producto solicitado no se encuentra disponible o ha finalizado</h5><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br></div>  <?php 
 	}
 }
 include('includes/footer.php'); ?>

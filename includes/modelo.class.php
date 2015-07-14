@@ -37,9 +37,7 @@ class Modelo {
 	}
 	
 	public function update(){
-		date_default_timezone_set('America/Argentina/Buenos_Aires'); 
-		$date = date('Y/m/d', time());
-		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < '{$date}' AND estado = 0");
+		$this->con->query("UPDATE `producto` SET `estado`= 2 WHERE fecha_fin < CURDATE() AND estado = 0");
 	}
 	
 	public static function getInstance(){
@@ -260,20 +258,17 @@ class Modelo {
 	public function getCreados($desde,$hasta){
 		$desde = date('Y-m-d',$desde);
 		$hasta = date('Y-m-d',$hasta);		
-		$res = $this->con->query("SELECT * FROM producto WHERE fecha_ini > '{$desde}' AND fecha_ini < '{$hasta}' ");
+		$res = $this->con->query("SELECT * FROM producto WHERE fecha_ini >= '{$desde}' AND fecha_ini <= '{$hasta}' ");
 		return $res->num_rows;
 	}
 	
 	public function getFinalizados($desde,$hasta){
 		$desde = date('Y-m-d',$desde);
 		$hasta = date('Y-m-d',$hasta);		
-		$res = $this->con->query("SELECT * FROM producto WHERE fecha_fin > '{$desde}' AND fecha_fin < '{$hasta}' AND estado <> 0");
-		$ret = array();
-		while($ofe=$res->fetch_assoc()){			
-			$ret[]=$ofe;
-		}
+		$res = $this->con->query("SELECT * FROM producto WHERE fecha_fin >= '{$desde}' AND fecha_fin <= '{$hasta}' AND estado <> 0");
+		$array = $res->fetch_all(MYSQLI_ASSOC);
 		$finalizados=0;$vencidos=0;$cancelados=0;
-		foreach($ret as $a){
+		foreach($array as $a){
 			switch($a['estado']){
 				case 1: $finalizados = $finalizados +1; break;
 				case 2: $vencidos = $vencidos +1; break;
@@ -313,10 +308,7 @@ class Modelo {
 	
 	public function getMisOfertas(){
 		$res = $this->con->query("SELECT v.motivo, p.titulo, p.foto, p.id, v.monto FROM venta v INNER JOIN producto p ON p.id = v.id_producto WHERE v.id_usuario = '{$_SESSION['id']}'");
-		$ret = array();
-		while($ofe=$res->fetch_assoc()){			
-			$ret[]=$ofe;
-		}
+		$ret = $res->fetch_all(MYSQLI_ASSOC);
 		return $ret;
 	}
 
@@ -342,6 +334,15 @@ class Modelo {
 
 	public function cancelarProducto($idprod){
 		$this->con->query("UPDATE `producto` SET `estado`= '3' WHERE id = '{$idprod}' ");
+	}
+	
+	public function getAdmins(){
+		$res = $this->con->query("SELECT * FROM usuario WHERE admin = 1 ");
+		$fila = array();
+		$fila[] = $res->fetch_assoc() ;
+		$resultado = $fila[0];
+		
+	return $resultado;
 	}
 	
 }

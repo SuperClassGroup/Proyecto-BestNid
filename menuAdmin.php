@@ -24,7 +24,7 @@ if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 ?>
 <div class="center">
 	<h3 class="center red-text">ERROR</h3>
-	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="/">PAGINA PRINCIPAL</a><br><br></div> 
+	<br><img src="img/Error.jpg" width="250px"></img><br><a class="btn red" href="index.php">PAGINA PRINCIPAL</a><br><br></div> 
 </div>
 <?php
 

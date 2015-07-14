@@ -7,7 +7,7 @@ if(isset($_POST['user'])){
 	$con = new Modelo();
 	$res = $con->crearUsuarioNuevo($_POST['first_name'],$_POST['last_name'],$_POST['dni'],$_POST['creditcard'],$_POST['user'],$_POST['email'],$_POST['password']);
 	if ($res == "Se creo el usuario exitosamente" ){
-		header("Location: /UsuarioCreado.php");
+		header("Location: UsuarioCreado.php");
 	}else{
 		?><p class="center red-text">ERROR: <?php echo $res ?></p><?php
 	}
@@ -18,7 +18,7 @@ if(isset($_POST['user'])){
 <div class="container">
   <div class="row center">
 	<h3 class="red-text">Bienvenido a Bestnid</h3>
-    <form class="col s12" action="/register.php" method="POST">
+    <form class="col s12" action="register.php" method="POST">
       <div class="row">
         <div class="input-field col s6">
           <input id="first_name" type="text" class="validate" required name="first_name" value="<?php if($_POST){ echo($_POST['first_name']);}?>" />

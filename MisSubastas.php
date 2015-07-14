@@ -9,13 +9,13 @@
 	<?php foreach( $productos as $producto ){ ?>
 	<li class="collection-item avatar">
 		<img src="<?php echo $producto['foto']; ?>" alt="" class="circle">
-		<a href="/Producto.php?idproducto=<?php echo $producto['id']; ?>"><b><span class="title black-text"> <?php echo $producto['titulo']; ?></span></b></a>
+		<a href="Producto.php?idproducto=<?php echo $producto['id']; ?>"><b><span class="title black-text"> <?php echo $producto['titulo']; ?></span></b></a>
 		<p class="truncate"> <?php echo $producto['descripcion']; ?> <br> 
 			<?php			
 			switch ($producto['estado']) {
 				case 0:
 					?>
-					<a href="/Producto.php?idproducto=<?php echo $producto['id']; ?>"><u class="green-text text-lighten-2">Subasta activa</u></a> -
+					<a href="Producto.php?idproducto=<?php echo $producto['id']; ?>"><u class="green-text text-lighten-2">Subasta activa</u></a> -
 					<a href="editarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="blue-text text-lighten-2">Editar</u></a> -
 					<a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>" ><u class="red-text text-lighten-2">Cancelar</u></a><?php
 					break;

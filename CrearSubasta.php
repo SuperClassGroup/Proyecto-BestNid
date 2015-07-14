@@ -18,7 +18,7 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 	$subir->init($_FILES['imagen']);
 	if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
 	$id = $con->setProducto($_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}",$_SESSION['id'],$_POST['duracion']);
-	header("Location: /SubastaCreada.php?id={$id}");
+	header("Location: SubastaCreada.php?id={$id}");
 	}
 }
 ?>

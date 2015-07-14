@@ -5,7 +5,7 @@ include('includes/header.php');
 
 <div class="container">
 	<div class="row">
-		<h2 class="col s12 header center red-text text-darken-2">
+		<h2 class="col s12 header center red-text text-lighten-2">
 			Acerca de Bestnid
 		</h2>
 	</div>

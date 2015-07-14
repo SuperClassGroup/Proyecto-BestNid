@@ -11,7 +11,7 @@ if(isset($_REQUEST['user'])){
 		$_SESSION['user'] = $_REQUEST['user'];
 		$_SESSION['id'] = $user['id'];
 		$_SESSION['admin'] = $user['admin'];
-		header("Location: /");
+		header("Location: index.php");
 	}
 }
 ?>
@@ -20,7 +20,7 @@ if(isset($_REQUEST['user'])){
 <br>
 <div class="container center-align">
 	<h3 class="red-text">Ingresar</h3>
-		<form class="container" action="/Login.php" method="post">
+		<form class="container" action="Login.php" method="post">
 			<div class="row">
 				<div class="input-field col s12">
 				  <input id="first_name" type="text" class="validate" name="user" required />
@@ -32,13 +32,13 @@ if(isset($_REQUEST['user'])){
 				</div>
 			</div>
 			<div class="row">
-				<button class="btn waves-effect waves-light red accent-2  " type="submit" name="action">Ingresar
+				<button class="btn waves-effect waves-light red accent-2" type="submit" name="action">Ingresar
 					<i class="mdi-content-send right"></i>
 				</button>
 			</div>
 		</form>
 		<div class="row">
-		<a class="center red-text text-darken-2" href="/register.php"> Si todavia no tenes cuenta, haz click aqui para registrarte</a>
+		<a class="center red-text text-darken-2" href="register.php"> Si todavia no tenes cuenta, haz click aqui para registrarte</a>
 
 		</div>
 

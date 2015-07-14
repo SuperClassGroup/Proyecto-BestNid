@@ -19,8 +19,12 @@ if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
 
 
 if(isset($_POST['idproducto'])){
-  $con->setOferta( $_SESSION['id'], $_POST['idproducto'], $_POST['precio'], $_POST['necesidad'] );
-  $mje = "Tu oferta ha sido enviada.";  $btnpag = 'Perfil.php'; $btnname = 'IR A MI PERFIL';
+	if ($_POST['precio']>1){
+	$con->setOferta( $_SESSION['id'], $_POST['idproducto'], $_POST['precio'], $_POST['necesidad'] );
+	$mje = "Tu oferta ha sido enviada.";  $btnpag = 'Perfil.php'; $btnname = 'IR A MI PERFIL';
+	}else{
+	$mje = "El monto debe ser mayor a $1";  $btnpag = $_SERVER['HTTP_REFERER']; $btnname = 'Volver';
+	}
 }
 
 include('includes/header.php');
