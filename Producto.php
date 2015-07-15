@@ -114,7 +114,10 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 			<?php } ?>
 			
 			<li class="divider"></li>
-			<?php if (isset($_SESSION['user'])) { ?>
+			<?php 
+			if (isset($_SESSION['user'])) { 
+				if($_SESSION['id'] == $producto['id_usuario']){ ?><p class="center"> No puedes comentar tu subasta<br> Solo puedes responder comentarios de otros usuarios una vez</p><?php }else{
+			?>
 			<br>
 			<div class="row">
 				<form method="post">
@@ -130,7 +133,7 @@ if( isset($_REQUEST['idproducto']) && is_numeric($_REQUEST['idproducto']) ){
 					</div>
 				</form>
 			</div>
-			<?php } else{ ?>
+			<?php } } else{ ?>
 			<p class="center"> Para realizar un comentario debes estar logueado  </p>
 			<?php } ?>
 		</div>

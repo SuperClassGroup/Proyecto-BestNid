@@ -7,16 +7,18 @@ include('includes/modelo.class.php');
 
 if(isset($_REQUEST['user'])){
 	$con = new Modelo();
-	if( $user = $con->verifyUser($_REQUEST['user'],$_REQUEST['pass']) ){
+	if( $user = $con->verifyUser($_REQUEST['user'],$_REQUEST['pass'])){
+		if ( $user['deleted'] != 1 ){
 		$_SESSION['user'] = $_REQUEST['user'];
 		$_SESSION['id'] = $user['id'];
 		$_SESSION['admin'] = $user['admin'];
 		header("Location: index.php");
+		}else{
+			?><div class="center red-text" ><br> Este usuario fue eliminado </div> <?php
+		}
 	}
 }
 ?>
-
-<br>
 <br>
 <div class="container center-align">
 	<h3 class="red-text">Ingresar</h3>

@@ -9,7 +9,7 @@
 	<?php foreach( $productos as $producto ){ ?>
 	<li class="collection-item avatar">
 		<img src="<?php echo $producto['foto']; ?>" alt="" class="circle">
-		<a href="Producto.php?idproducto=<?php echo $producto['id']; ?>"><b><span class="title black-text"> <?php echo $producto['titulo']; ?></span></b></a>
+		<a class="tooltipped" data-position="top" data-delay="60" data-tooltip="Ver subasta" href="Producto.php?idproducto=<?php echo $producto['id']; ?>"><b><span class="title black-text"> <?php echo $producto['titulo']; ?></span></b></a>
 		<p class="truncate"> <?php echo $producto['descripcion']; ?> <br> 
 			<?php			
 			switch ($producto['estado']) {

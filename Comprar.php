@@ -33,6 +33,7 @@ if(isset($mje)){?>
     <br><div class="red-text center" style="font-size:1.5rem"><?php echo $mje; ?><br><br>
 	<?php if($mje != "Tu oferta ha sido enviada."){ ?><img src="img/Error.jpg" width="250" /><br><?php }else{ ?><img src="img/success.jpg" width="250" /><br> <?php } ?>
 	<a class="btn red"href="<?php echo $btnpag; ?>"><?php echo $btnname; ?></a>
+	<br><br>
 	</div>
 	
 <?php }else{ ?>
