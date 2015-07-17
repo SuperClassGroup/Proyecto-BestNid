@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="styles/main.css" />
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+		<script src="jquery/jquery-1.11.3.js"></script>
+
 	</head>
 	<body>
 		<nav id="nav" class="red">

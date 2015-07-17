@@ -1,12 +1,8 @@
-<?php 
-
-$usuario = $con->getUser($_SESSION['id']);
-
-?>
+<?php $usuario = $con->getUser($_SESSION['id']); ?>
 
 <div class="container">
 	<div class="card-panel red lighten-2 white-text">
-		<h5><i class="material-icons">person_pin</i> Informacion Personal <a href="#editarDatos"><i class="white-text material-icons right tooltipped" data-position="right" data-delay="30" data-tooltip="Modificar tus datos personales">mode_edit</i></a></h5>
+		<h5><i class="material-icons">person_pin</i> Informacion Personal <a href="updateProfile.php"><i class="white-text material-icons right tooltipped" data-position="right" data-delay="30" data-tooltip="Modificar tus datos personales">mode_edit</i></a></h5>
 		<li class="divider"></li><br>
 		<div class="row">
 			<div class="col s12">
@@ -27,7 +23,7 @@ $usuario = $con->getUser($_SESSION['id']);
 		</div>
 	</div>
 	<div class="card-panel red lighten-2 white-text">
-		<h5><i class="material-icons">email</i> Informacion de Contacto <a href="#editarDatos"><i class="white-text material-icons right tooltipped" data-position="right" data-delay="30" data-tooltip="Modificar tus datos personales">mode_edit</i></a></h5>
+		<h5><i class="material-icons">email</i> Informacion de Contacto <a href="updateProfile.php"><i class="white-text material-icons right tooltipped" data-position="right" data-delay="30" data-tooltip="Modificar tus datos personales">mode_edit</i></a></h5>
 		<li class="divider"></li><br>
 		<div class="row">
 			<div class="col s12 m6">
@@ -37,10 +33,10 @@ $usuario = $con->getUser($_SESSION['id']);
 	</div>
 	<div class="row center-align valign">
 		<div class="col s6 m4">
-		<a class="red-text tooltipped" data-position="bottom" data-delay="30" data-tooltip="Modificar tus datos personales" href="#editarDatos"><u>Editar Datos</u></a>
+		<a class="red-text tooltipped" data-position="bottom" data-delay="30" data-tooltip="Modificar tus datos personales" href="updateProfile.php"><u>Editar Datos</u></a>
 		</div>
 		<div class="col s6 m4" >
-		<a class="red-text tooltipped" data-position="bottom" data-delay="30" data-tooltip="Modificar unicamente tu contraseña" href="#editarPass"><u>Editar Contraseña</u></a>
+		<a class="red-text tooltipped" data-position="bottom" data-delay="30" data-tooltip="Modificar unicamente tu contraseña" href="updatePassword.php"><u>Editar Contraseña</u></a>
 		</div>
 		<div class="col s12 hide-on-med-and-up">
 		<br>

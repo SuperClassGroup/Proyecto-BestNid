@@ -40,7 +40,9 @@ if(isset($_REQUEST['user'])){
 			</div>
 		</form>
 		<div class="row">
-		<a class="center red-text text-darken-2" href="register.php"> Si todavia no tenes cuenta, haz click aqui para registrarte</a>
+		<a class="center red-text text-darken-2" href="register.php">Registrarse</a> - 
+		<a class="center red-text text-darken-2" href="recuperarPassword.php">Recuperar contraseña</a> -
+		<a class="center red-text text-darken-2" href="Ayuda.php">Ayuda</a>
 
 		</div>
 

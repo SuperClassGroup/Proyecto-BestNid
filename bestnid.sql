@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.0.10deb1
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 15-07-2015 a las 11:11:36
--- Versión del servidor: 5.6.17
--- Versión de PHP: 5.5.12
+-- Servidor: localhost
+-- Tiempo de generación: 17-07-2015 a las 00:08:13
+-- Versión del servidor: 5.5.43-0ubuntu0.14.04.1
+-- Versión de PHP: 5.5.9-1ubuntu4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=21 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -38,11 +38,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'Ropa y Accesorios'),
-(2, 'Animales'),
-(3, 'Antiguedades'),
-(4, 'Alimentos'),
-(5, 'Otros'),
-(6, 'Tecnologia');
+(4, 'Alimentos');
 
 -- --------------------------------------------------------
 
@@ -125,18 +121,19 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tarjeta_credito` int(11) NOT NULL,
   `admin` tinyint(1) NOT NULL,
   `deleted` tinyint(1) NOT NULL,
+  `token` varchar(32) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`, `admin`, `deleted`) VALUES
-(1, 'Nicolas', 'Banegas', 38706949, 'banegasn', '1144', 'nicobanegas.sc@gmail.com', 123456789, 0, 0),
-(3, 'Fermin', 'Minetto', 1234, 'minettof', '1144', 'ferminmi@yahoo.com', 1234, 1, 0),
-(4, 'Leandro', 'Mariperisena', 1234, 'mariperisenal', '1144', 'leandro.mariperisena@gmail.com', 1234, 0, 0),
-(5, 'Juan', 'Perez', 1234, 'perezj', '1144', 'perezjuan@hotmail.com', 1234, 0, 0);
+INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`, `admin`, `deleted`, `token`) VALUES
+(1, 'Nicolas', 'Banegas', 38706949, 'banegasn', '1144', 'nicobanegas.sc@gmail.com', 123456789, 0, 0, '7815696ecbf1c96e6894b779456d330e'),
+(3, 'Fermin la fiera', 'Minetto', 1234, 'ferminmi', '1144', 'asdasdasdasdas@gmail.com', 123123123, 1, 0, '912ec803b2ce49e4a541068d495ab570'),
+(4, 'Leandro', 'Mariperisena', 1234, 'mariperisenal', '1144', 'leandro.mariperisena@gmail.com', 1234, 0, 0, '22ca8686bfa31a2ae5f55a7f60009e14'),
+(5, 'Juan', 'Perez', 1234, 'perezj', '1144', 'perezjuan@hotmail.com', 1234, 0, 0, '8f69d6aae16078588fee866dd3fdc1fc');
 
 -- --------------------------------------------------------
 
@@ -151,8 +148,7 @@ CREATE TABLE IF NOT EXISTS `venta` (
   `monto` double NOT NULL,
   `motivo` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
   `canceled` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  FULLTEXT KEY `motivo` (`motivo`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=18 ;
 
 --

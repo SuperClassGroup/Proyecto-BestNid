@@ -12,7 +12,7 @@ class Modelo {
 	private static $instancia;
 	
 	private static $user = 'root';
-	private static $pass = '';
+	private static $pass = '1234';
 	private static $host = '127.0.0.1';
 	private static $dbnm = 'bestnid';
 	
@@ -79,7 +79,7 @@ class Modelo {
 	
 	//OBTIENE TODAS LAS CATEGORIAS
 	public function getAllCategories(){
-		$res = $this->con->query("SELECT * FROM categoria");
+		$res = $this->con->query("SELECT c.id, c.nombre, (SELECT COUNT(*) FROM producto p WHERE p.id_categoria = c.id AND (p.estado = 1 OR p.estado = 3) ) items FROM categoria c");
 		
 		$resultado = array();
 		while( $fila = $res->fetch_assoc() ){
@@ -88,17 +88,26 @@ class Modelo {
 		return $resultado;
 		
 	}
+
+	public function addCategory($nombre){
+		$this->con->query("INSERT INTO categoria(id,nombre) VALUES (NULL,'{$nombre}')");
+		return $this->con->insert_id;
+	}
+
+	public function removeCategory($id){
+		$this->con->query("DELETE FROM categoria WHERE id = '{$id}'");
+	}
 	
 	//NUEVA FUNCION DE VERIFICAR QUE SI FUNCIONA, PERO HACE MAS LABURO
-		public function verifyUser($user, $pass){
+	public function verifyUser($user, $pass){
 		$res = $this->con->query("SELECT * FROM usuario");
 		while( $fila = $res->fetch_assoc() ){
 			if($fila['user'] == $user){
 				if( $fila['pass'] == $pass ) return $fila;
-				else{ ?><p class="center red-text" > Contraseña Invalida </p> <?php return false;} 
+				else{ ?><p class="center red-text"> Contraseña Invalida </p> <?php return false;} 
 			}
 		}
-		?><p class="center red-text" > Usuario Invalido </p> <?php
+		?><p class="center red-text"> Usuario Invalido </p> <?php
 		return false;
 				
 	}
@@ -192,7 +201,8 @@ class Modelo {
 	public function crearUsuarioNuevo($nombre, $apellido, $dni, $numTarjeta, $nombre_usuario, $mail, $contra){
 		
 		if ($this->usuarioNoExiste($nombre_usuario)){
-			if($this->con->query("INSERT INTO `usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}')")
+			$token = md5($nombre_usuario.rand());
+			if($this->con->query("INSERT INTO `usuario` (`nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`, token) VALUES ('{$nombre}', '{$apellido}', '{$dni}', '{$nombre_usuario}', '{$contra}', '{$mail}', '{$numTarjeta}', '{$token}')")
 			){
 			$respuesta = "Se creo el usuario exitosamente";	
 			}
@@ -204,6 +214,28 @@ class Modelo {
 			$respuesta = "El nombre de usuario elegido ya existe";
 		}
 	return $respuesta;
+	}
+
+	//Crea un usuario nuevo siempre y cuando no exista el username en la base de datos.
+	public function actualizarUsuario($viejo, $nuevo){
+		$respuesta = '';
+		if( $viejo['user'] != $nuevo['user'] ){
+			if(!$this->usuarioNoExiste($nuevo['user'])){
+				$respuesta .= 'El nombre de usuario elegido ya existe';
+			}else{
+				$this->con->query("UPDATE usuario SET user = '{$nuevo['user']}' WHERE id = '{$viejo['id']}'");
+			}
+		}
+
+		$this->con->query("UPDATE usuario SET
+				nombre = '{$nuevo['nombre']}' ,
+				apellido = '{$nuevo['apellido']}' ,
+				tarjeta_credito = '{$nuevo['tarjeta_credito']}' ,
+				email = '{$nuevo['email']}',
+				pass = '{$nuevo['pass']}'
+			WHERE id = '{$viejo['id']}'");
+
+		return $respuesta;
 	}
 	
 	public function setRespuesta($respuesta,$idcomentario){
@@ -256,6 +288,22 @@ class Modelo {
 		$fila[] = $res->fetch_assoc() ;
 		$resultado = $fila[0];
 		return $resultado;
+	}
+	
+	public function getUserByEmail($email){
+		$res = $this->con->query("SELECT * FROM usuario WHERE email = '{$email}' ");
+		if($res->num_rows)
+			return $res->fetch_assoc();
+		else
+			return 0;
+	}
+	
+	public function getUserByToken($token){
+		$res = $this->con->query("SELECT * FROM usuario WHERE token = '{$token}' ");
+		if($res->num_rows)
+			return $res->fetch_assoc();
+		else
+			return 0;
 	}
 	
 	public function getCreados($desde,$hasta){

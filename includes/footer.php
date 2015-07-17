@@ -28,7 +28,6 @@
 			</div>
           </div>
         </footer>
-		<script src="jquery/jquery-1.11.3.js"></script>
 		<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 		<script src="scripts/main.js"></script>
 	</body>

@@ -16,7 +16,7 @@ if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 	  </ul>
 	</div>
 	<div id="Estadisticas" class="col s12"><br><?php include('Estadisticas.php'); ?></div>
-	<div id="Categorias" class="col s12"><br></div>
+	<div id="Categorias" class="col s12"><br><?php include('Categorias.php'); ?></div>
 </div>
   
 <?php
@@ -29,4 +29,5 @@ if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 <?php
 
 }
- include('includes/footer.php'); ?>
+
+include('includes/footer.php'); ?>
