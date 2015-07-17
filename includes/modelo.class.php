@@ -12,7 +12,7 @@ class Modelo {
 	private static $instancia;
 	
 	private static $user = 'root';
-	private static $pass = '1234';
+	private static $pass = '';
 	private static $host = '127.0.0.1';
 	private static $dbnm = 'bestnid';
 	
