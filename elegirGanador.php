@@ -23,18 +23,6 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
             $con->finalizarProducto($producto['id']);
             $ganador = $con->getUser($venta['id_usuario']);
 			$subastador = $con->getUser($producto['id_usuario']);
-			
-			$titulo 	= '=?utf-8?B?BestNid: Has Ganado una Subasta!?=';
-			$link 		= 'http://bestnid.net46.net/Producto.php?id='. $producto['id'];
-			$mensaje	= 'Usted a sido seleccionado como ganador de la subasta: '. $producto['titulo'] ."\n". $link . "\n"; 
-			$mensaje   .= "Pongase en contacto con el Subastador: ". $subastador['email'];
-			$de 		= 'info.bestnid@gmail.com';
-			$dename 	= 'BestNid';
-			$para 		= $ganador['email'];
-
-			$cabeceras = 'From: ' . $dename . "<" . $de . ">" . "\r\n";
-
-			mail($para, $titulo, $mensaje, $cabeceras);
         }
 	}
 }
