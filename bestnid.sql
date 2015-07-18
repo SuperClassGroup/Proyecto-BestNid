@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 17-07-2015 a las 00:08:13
--- Versión del servidor: 5.5.43-0ubuntu0.14.04.1
--- Versión de PHP: 5.5.9-1ubuntu4.11
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-07-2015 a las 08:01:19
+-- Versión del servidor: 5.6.17
+-- Versión de PHP: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=22 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -38,7 +38,11 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 
 INSERT INTO `categoria` (`id`, `nombre`) VALUES
 (1, 'Ropa y Accesorios'),
-(4, 'Alimentos');
+(2, 'Animales'),
+(3, 'Antiguedades'),
+(4, 'Alimentos'),
+(5, 'Otros'),
+(6, 'Tecnologia');
 
 -- --------------------------------------------------------
 
@@ -87,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
   `id_usuario` int(11) NOT NULL,
   `id_user_ganador` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=15 ;
 
 --
 -- Volcado de datos para la tabla `producto`
@@ -101,8 +105,13 @@ INSERT INTO `producto` (`id`, `titulo`, `foto`, `descripcion`, `estado`, `fecha_
 (5, 'Aceite y Vinagre', 'fotos/6.jpg', '200ml de aceite y 300ml de vinagre. No incluye fascos', 1, '2015-05-16', '2015-06-16', 4, 1, 2),
 (6, 'Nexus 4', 'fotos/5.jpg', 'El LG Nexus 4 desarrollado junto con Google. Posee un procesador quad-core Snapdragon S4 Pro a 1.5GHz, pantalla WXGA True HD IPS Plus de 4.7 pulgadas, 2GB de RAM, camara trasera de 8 megapixels, camara frontal de 1.3 megapixels y bateria de 2100mAh. Ademas, posee soporte NFC, y carga inalambrica, aunque no es LTE sino que esta limitado a HSPA+.', 2, '2015-05-28', '2015-06-28', 6, 1, 0),
 (7, 'Hamburguesa', 'fotos/20150623035755.jpg', 'Una rica y deliciosa Hamburguesa con la mejor carne Argentina', 0, '2015-06-22', '2015-07-22', 4, 1, 0),
-(8, 'Zapatillas Nike Air Futurun 2 ', 'fotos/20150623041930.jpg', 'Zapatillas Nike Perfectas para ir a correr un dia de mucho frio', 0, '2015-06-22', '2015-07-17', 1, 4, 0),
-(9, 'Boxer Atigrado', 'fotos/20150623093829.jpg', 'Perros fieles si los hay los boxers, este cachorro tiene 4 meses.', 0, '2015-06-23', '2015-07-23', 2, 3, 0);
+(8, 'Zapatillas Nike Air Futurun 2 ', 'fotos/20150623041930.jpg', 'Zapatillas Nike Perfectas para ir a correr un dia de mucho frio', 2, '2015-06-22', '2015-07-17', 1, 4, 0),
+(9, 'Boxer Atigrado', 'fotos/20150623093829.jpg', 'Perros fieles si los hay los boxers, este cachorro tiene 4 meses.', 0, '2015-06-23', '2015-07-23', 2, 3, 0),
+(10, 'Tocadiscos', 'fotos/20150715052631.jpg', 'Los tocadiscos son aparatos que extraen y amplifican la música contenida en un disco de vinilo. Una aguja recorre la pista grabada en el soporte reproduciendo la vibración inscrita en el. La señal es posteriormente amplificada.', 0, '2015-07-15', '2015-08-04', 3, 5, 0),
+(11, 'Impresora 3D - MakerBot Replicator 2', 'fotos/20150715053435.jpg', 'La Replicator 2X es un modelo clásico de Makerbot Industries. Es un impresora particularmente estable especializada en la impresión de ABS que integra un doble cabezal.\r\nAdemás puede trabajar con filamento soluble de tipo HIPS, con Ninjaflex, Semiflex, XT o Nylon.', 0, '2015-07-15', '2015-08-14', 6, 3, 0),
+(12, 'Bajo - Sterling By Musicman Sub Series Ray 4', 'fotos/20150715053741.jpg', 'La familia de instrumentos Sub Series introduce un nuevo nivel de calidad con características y un valor para el músico intermedio o principiante. Parte de la estimada familia de instrumentos Music Man & Sterling By Music Man familia, cree que todos los músicos deben tener a instrumentos que se sienten como un instrumento profesional', 0, '2015-07-15', '2015-08-09', 5, 4, 0),
+(13, 'Sony Play Station 4 500GB ', 'fotos/20150715054015.jpg', 'Este PlayStation 4 tiene para ti experiencias más grandes y emocionantes a las que estás acostumbrado. Cuenta con un impresionante rendimiento gráfico que te brindará juegos mucho más realistas. Puedes jugar con una mayor precisión gracias a su altavoz y sensores de movimiento integrados. Tiene 500 Gb de memoria de disco duro, Bluetooth y WiFi, por lo que podrás jugar en línea con tus amigos, compartir tus trofeos, ver películas, y mucho más. ', 0, '2015-07-15', '2015-08-14', 6, 3, 0),
+(14, 'Buzo Montagne de mujer Osaka', 'fotos/20150715054305.jpg', 'TELA: Ultra Term 265grs./m2. Tejido bicolor con interior frizado, bondeado por ultrasonido y buena repelencia al agua. Poliéster 100%.\r\n\r\n \r\n\r\nDESCRIPCIÓN:\r\n• Capucha fija con 2 puntos de ajuste.\r\n• Costuras stretch.\r\n• Manga ranglan.\r\n• Bolsillos laterales con cierres.\r\n• Medio cierre desplazado.', 0, '2015-07-15', '2015-08-14', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -131,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `documento`, `user`, `pass`, `email`, `tarjeta_credito`, `admin`, `deleted`, `token`) VALUES
 (1, 'Nicolas', 'Banegas', 38706949, 'banegasn', '1144', 'nicobanegas.sc@gmail.com', 123456789, 0, 0, '7815696ecbf1c96e6894b779456d330e'),
-(3, 'Fermin la fiera', 'Minetto', 1234, 'ferminmi', '1144', 'asdasdasdasdas@gmail.com', 123123123, 1, 0, '912ec803b2ce49e4a541068d495ab570'),
+(3, 'Fermin', 'Minetto', 1234, 'minettof', '1144', 'ferminmi@yahoo.com', 123123123, 1, 0, '912ec803b2ce49e4a541068d495ab570'),
 (4, 'Leandro', 'Mariperisena', 1234, 'mariperisenal', '1144', 'leandro.mariperisena@gmail.com', 1234, 0, 0, '22ca8686bfa31a2ae5f55a7f60009e14'),
 (5, 'Juan', 'Perez', 1234, 'perezj', '1144', 'perezjuan@hotmail.com', 1234, 0, 0, '8f69d6aae16078588fee866dd3fdc1fc');
 
