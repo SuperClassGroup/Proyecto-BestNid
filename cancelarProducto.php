@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
     
     if(isset($_GET['ok'])){
         $con->cancelarProducto($producto['id']);
-        header('Location: Perfil.php');
+        header('Location: Perfil.php#MisSubastas');
         die;
     }
 
@@ -20,7 +20,7 @@ if (isset($_SESSION['id']) && isset($_GET['id'])){
             <li class="divider"></li>
             <h5 class="center red-text">Esta seguro que desea cancelar la subasta?</h5>
             <li class="divider"></li><br><br>
-            <a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>&ok" class="btn waves-effect waves-light red lighten-1">SI, cancelar</a> <a class="btn waves-effect waves-light red lighten-1"" href="Perfil.php">No, volver a mi perfil</a>
+            <a href="cancelarProducto.php?id=<?php echo $producto['id']; ?>&ok" class="btn waves-effect waves-light red lighten-1">SI, cancelar</a> <a class="btn waves-effect waves-light red lighten-1"" href="Perfil.php#MisSubastas">No, volver a mi perfil</a>
         </div>
     <?php }else{ ?>
             <div class="center">

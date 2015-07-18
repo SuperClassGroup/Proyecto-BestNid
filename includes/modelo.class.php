@@ -79,7 +79,7 @@ class Modelo {
 	
 	//OBTIENE TODAS LAS CATEGORIAS
 	public function getAllCategories(){
-		$res = $this->con->query("SELECT c.id, c.nombre, (SELECT COUNT(*) FROM producto p WHERE p.id_categoria = c.id AND (p.estado = 1 OR p.estado = 3) ) items FROM categoria c");
+		$res = $this->con->query("SELECT c.id, c.nombre, (SELECT COUNT(*) FROM producto p WHERE p.id_categoria = c.id AND p.estado = 0 ) items FROM categoria c");
 		
 		$resultado = array();
 		while( $fila = $res->fetch_assoc() ){

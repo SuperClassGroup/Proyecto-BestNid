@@ -15,9 +15,9 @@ $categorias = $con->getAllCategories(); ?>
 <ul class="collection">
     <?php foreach ($categorias as $cat) { ?>
         <li class="collection-item">
-            <a href="#" class="secondary-content" onclick="deleteCat(this,<?php echo $cat['id']; ?>,<?php echo $cat['items']; ?>); return false;"><i class="material-icons">delete</i></a>
-            <a href="/index.php?categoria=<?php echo $cat['id']; ?>"><?php echo $cat['nombre'] ?></a>
-            <p><?php echo $cat['items'] ?> producto<?php echo ($cat['items']==1)?'':'s'; ?> activo<?php echo ($cat['items']==1)?'':'s'; ?></p>
+            <a href="#" class="secondary-content" onclick="deleteCat(this,<?php echo $cat['id']; ?>,<?php echo $cat['items']; ?>); return false;"><i class="material-icons red-text">delete</i></a>
+            <a class="grey-text text-darken-4" href="index.php?categoria=<?php echo $cat['id']; ?>"><b><?php echo $cat['nombre'] ?></b></a>
+            <p class="grey-text text-darken-1" ><?php echo $cat['items'] ?> producto<?php echo ($cat['items']==1)?'':'s'; ?> activo<?php echo ($cat['items']==1)?'':'s'; ?></p>
         </li>
     <?php }?>
 </ul>
@@ -38,8 +38,8 @@ $categorias = $con->getAllCategories(); ?>
 <div class="col s12 center">
     <form method="post" action="menuAdmin.php#Categorias">
         <div class="input-field">
-          <input name="new_categ" id="new_categ" placeholder="Nombre" type="text" maxlength="45" require />
-          <label for="new_categ">Nueva categoría</label>
+			<label for="new_categ">Nueva categoría</label>
+			<input name="new_categ" id="new_categ" placeholder="Nombre" type="text" maxlength="45" require />
         </div>
         <button href="#" class="btn waves-effect waves-light red lighten-1" type="submit">Agregar</button>
     </form>

@@ -12,11 +12,11 @@ if (isset($_POST['titulo']) && isset($_POST['descripcion'])){
 		$subir->init($_FILES['imagen']);
 		if($error = $subir->_r == ""){ //SI NO HAY ERRORES CON LA CARGA DE IMAGEN
 		$con->updateProductoConFoto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria'],"fotos/{$subir->_name}");
-		header("Location: producto.php?idproducto={$_GET['id']}");
+		header("Location: Producto.php?idproducto={$_GET['id']}");
 		}
 	}else{
 		$con->updateProducto($_GET['id'],$_POST['titulo'],$_POST['descripcion'],$_POST['idcategoria']);
-		header("Location: producto.php?idproducto={$_GET['id']}");
+		header("Location: Producto.php?idproducto={$_GET['id']}");
 	}
 }
 $categorias = $con->getAllCategories();
@@ -26,7 +26,8 @@ $categorias = $con->getAllCategories();
 if (isset($_SESSION['id']) && isset($_GET['id'])){
 	$producto = $con->getProduct($_GET['id']);
 	if ($producto['id_usuario'] == $_SESSION['id']){
-	if (empty($con->getOfertasOfProduct($producto['id']))){
+	$ofertas = $con->getOfertasOfProduct($producto['id']);
+	if (empty($ofertas)){
 ?>
 <div class="container"><br>
 	<li class="divider"></li>

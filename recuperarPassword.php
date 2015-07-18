@@ -8,7 +8,7 @@ $con = new Modelo();
 $recover = false;
 
 if(isset($_SESSION['id'])){
-    header("Location: /");
+    header("Location: index.php");
     die;
 }
 
@@ -58,7 +58,7 @@ if(isset($_POST['recover'])){
         $nuevo = $user;
         $nuevo['pass'] = $_POST['pass'];
         $resp .= $con->actualizarUsuario($user, $nuevo);
-        $mje .= 'Su contraseña ha sido actualizada. <a href="/Login.php">Ingresar</a>' . PHP_EOL;
+        $mje .= 'Su contraseña ha sido actualizada. <a href="Login.php">Ingresar</a>' . PHP_EOL;
     }
 }
 
@@ -69,8 +69,8 @@ include('includes/header.php');
 <div class="container">
    <div class="row">
       <?php if(isset($mje)){?>
-          <p><?php echo $mje ?></p>
-      <?php } 
+          <p class="center red-text"><?php echo $mje ?></p>
+      <?php }else{ echo '<br>';}
 
       if(!$recover){ ?>
       <form class="col s12" method="post">

@@ -21,7 +21,7 @@ if(isset($_SESSION['id']) && isset($_POST['edit'])){
     $resp .= $con->actualizarUsuario($user, $nuevo);
 
     if(empty($resp)){
-        header("Location: /Perfil.php");
+        header("Location: Perfil.php");
         die;
     }
   }
@@ -31,8 +31,8 @@ if (isset($_SESSION['id'])){ ?>
   <div class="container">
    <div class="row">
       <?php if(isset($resp)){?>
-          <p><?php echo $resp ?></p>
-      <?php } ?>
+          <p class="center"><?php echo $resp ?></p>
+      <?php }else{ echo '<br>'; }?>
       <form class="col s12" method="post">
         <input type="hidden" name="edit" value="Chupame el pito." />
         <div class="card-panel">

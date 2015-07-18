@@ -7,7 +7,7 @@ $con = new Modelo();
 
 if (isset($_POST['cuerpo']) && isset($_POST['email'])){
 	
-	require("includes/phpmailer/class.phpmailer.php");
+	require("includes/PHPMailer/class.phpmailer.php");
 
 	$titulo		= "BestNid: " . $_POST['asunto'];
 	$mensaje	= "Este mail fue enviado desde BestNid por: \n
